@@ -1,0 +1,420 @@
+{
+  "AU": {
+    "name": "Australia",
+    "region": "Oceania"
+  },
+  "NZ": {
+    "name": "New Zealand",
+    "region": "Oceania"
+  },
+  "JP": {
+    "name": "Japan",
+    "region": "Asia"
+  },
+  "CN": {
+    "name": "China",
+    "region": "Asia"
+  },
+  "KR": {
+    "name": "Korea, Republic of",
+    "region": "Asia"
+  },
+  "SG": {
+    "name": "Singapore",
+    "region": "Asia"
+  },
+  "PH": {
+    "name": "Philippines",
+    "region": "Asia"
+  },
+  "TH": {
+    "name": "Thailand",
+    "region": "Asia"
+  },
+  "IN": {
+    "name": "India",
+    "region": "India"
+  },
+  "US": {
+    "AK": {
+      "name": "Alaska",
+      "region": "Alaska"
+    },
+    "AL": {
+      "name": "Alabama",
+      "region": "US South"
+    },
+    "AR": {
+      "name": "Arkansas",
+      "region": "US South"
+    },
+    "AZ": {
+      "name": "Arizona",
+      "region": "US West"
+    },
+    "CA": {
+      "name": "California",
+      "region": "US West"
+    },
+    "CO": {
+      "name": "Colorado",
+      "region": "US West"
+    },
+    "CT": {
+      "name": "Connecticut",
+      "region": "US East"
+    },
+    "DC": {
+      "name": "District Of Columbia",
+      "region": "US East"
+    },
+    "DE": {
+      "name": "Delaware",
+      "region": "US East"
+    },
+    "FL": {
+      "name": "Florida",
+      "region": "US East"
+    },
+    "GA": {
+      "name": "Georgia",
+      "region": "US East"
+    },
+    "HI": {
+      "name": "Hawaii",
+      "region": "Hawaii"
+    },
+    "IA": {
+      "name": "Iowa",
+      "region": "US Midwest"
+    },
+    "ID": {
+      "name": "Idaho",
+      "region": "US West"
+    },
+    "IL": {
+      "name": "Illinois",
+      "region": "US Midwest"
+    },
+    "IN": {
+      "name": "Indiana",
+      "region": "US Midwest"
+    },
+    "KS": {
+      "name": "Kansas",
+      "region": "US Midwest"
+    },
+    "KY": {
+      "name": "Kentucky",
+      "region": "US South"
+    },
+    "LA": {
+      "name": "Louisiana",
+      "region": "US South"
+    },
+    "MA": {
+      "name": "Massachusetts",
+      "region": "US East"
+    },
+    "MD": {
+      "name": "Maryland",
+      "region": "US East"
+    },
+    "ME": {
+      "name": "Maine",
+      "region": "US East"
+    },
+    "MI": {
+      "name": "Michigan",
+      "region": "US Midwest"
+    },
+    "MN": {
+      "name": "Minnesota",
+      "region": "US Midwest"
+    },
+    "MO": {
+      "name": "Missouri",
+      "region": "US Midwest"
+    },
+    "MS": {
+      "name": "Mississippi",
+      "region": "US South"
+    },
+    "MT": {
+      "name": "Montana",
+      "region": "US West"
+    },
+    "NC": {
+      "name": "North Carolina",
+      "region": "US East"
+    },
+    "ND": {
+      "name": "North Dakota",
+      "region": "US Midwest"
+    },
+    "NE": {
+      "name": "Nebraska",
+      "region": "US Midwest"
+    },
+    "NH": {
+      "name": "New Hampshire",
+      "region": "US East"
+    },
+    "NJ": {
+      "name": "New Jersey",
+      "region": "US East"
+    },
+    "NM": {
+      "name": "New Mexico",
+      "region": "US West"
+    },
+    "NV": {
+      "name": "Nevada",
+      "region": "US West"
+    },
+    "NY": {
+      "name": "New York",
+      "region": "US East"
+    },
+    "OH": {
+      "name": "Ohio",
+      "region": "US Midwest"
+    },
+    "OK": {
+      "name": "Oklahoma",
+      "region": "US South"
+    },
+    "OR": {
+      "name": "Oregon",
+      "region": "US West"
+    },
+    "PA": {
+      "name": "Pennsylvania",
+      "region": "US East"
+    },
+    "RI": {
+      "name": "Rhode Island",
+      "region": "US East"
+    },
+    "SC": {
+      "name": "South Carolina",
+      "region": "US East"
+    },
+    "SD": {
+      "name": "South Dakota",
+      "region": "US Midwest"
+    },
+    "TN": {
+      "name": "Tennessee",
+      "region": "US South"
+    },
+    "TX": {
+      "name": "Texas",
+      "region": "US South"
+    },
+    "UT": {
+      "name": "Utah",
+      "region": "US West"
+    },
+    "VA": {
+      "name": "Virginia",
+      "region": "US East"
+    },
+    "VT": {
+      "name": "Vermont",
+      "region": "US East"
+    },
+    "WA": {
+      "name": "Washington",
+      "region": "US West"
+    },
+    "WI": {
+      "name": "Wisconsin",
+      "region": "US Midwest"
+    },
+    "WV": {
+      "name": "West Virginia",
+      "region": "US East"
+    },
+    "WY": {
+      "name": "Wyoming",
+      "region": "US West"
+    }
+  },
+  "AL": {
+    "name": "Albania",
+    "region": "Europe"
+  },
+  "AD": {
+    "name": "Andorra",
+    "region": "Europe"
+  },
+  "AM": {
+    "name": "Armenia",
+    "region": "Europe"
+  },
+  "AT": {
+    "name": "Austria",
+    "region": "Europe"
+  },
+  "AZ": {
+    "name": "Azerbaijan",
+    "region": "Europe"
+  },
+  "BY": {
+    "name": "Belarus",
+    "region": "Europe"
+  },
+  "BE": {
+    "name": "Belgium",
+    "region": "Europe"
+  },
+  "BA": {
+    "name": "Bosnia and Herzegovina",
+    "region": "Europe"
+  },
+  "BG": {
+    "name": "Bulgaria",
+    "region": "Europe"
+  },
+  "HR": {
+    "name": "Croatia",
+    "region": "Europe"
+  },
+  "CY": {
+    "name": "Cyprus",
+    "region": "Europe"
+  },
+  "CZ": {
+    "name": "Czech Republic",
+    "region": "Europe"
+  },
+  "DK": {
+    "name": "Denmark",
+    "region": "Europe"
+  },
+  "EE": {
+    "name": "Estonia",
+    "region": "Europe"
+  },
+  "FI": {
+    "name": "Finland",
+    "region": "Europe"
+  },
+  "FR": {
+    "name": "France",
+    "region": "Europe"
+  },
+  "GE": {
+    "name": "Georgia",
+    "region": "Europe"
+  },
+  "DE": {
+    "name": "Germany",
+    "region": "Europe"
+  },
+  "GR": {
+    "name": "Greece",
+    "region": "Europe"
+  },
+  "HU": {
+    "name": "Hungary",
+    "region": "Europe"
+  },
+  "IS": {
+    "name": "Iceland",
+    "region": "Europe"
+  },
+  "IE": {
+    "name": "Ireland",
+    "region": "Europe"
+  },
+  "IT": {
+    "name": "Italy",
+    "region": "Europe"
+  },
+  "KZ": {
+    "name": "Kazakhstan",
+    "region": "Europe"
+  },
+  "LV": {
+    "name": "Latvia",
+    "region": "Europe"
+  },
+  "LI": {
+    "name": "Liechtenstein",
+    "region": "Europe"
+  },
+  "LT": {
+    "name": "Lithuania",
+    "region": "Europe"
+  },
+  "LU": {
+    "name": "Luxembourg",
+    "region": "Europe"
+  },
+  "MT": {
+    "name": "Malta",
+    "region": "Europe"
+  },
+  "MC": {
+    "name": "Monaco",
+    "region": "Europe"
+  },
+  "NL": {
+    "name": "Netherlands",
+    "region": "Europe"
+  },
+  "NO": {
+    "name": "Norway",
+    "region": "Europe"
+  },
+  "PL": {
+    "name": "Poland",
+    "region": "Europe"
+  },
+  "PT": {
+    "name": "Portugal",
+    "region": "Europe"
+  },
+  "RO": {
+    "name": "Romania",
+    "region": "Europe"
+  },
+  "SM": {
+    "name": "San Marino",
+    "region": "Europe"
+  },
+  "SK": {
+    "name": "Slovakia",
+    "region": "Europe"
+  },
+  "SI": {
+    "name": "Slovenia",
+    "region": "Europe"
+  },
+  "ES": {
+    "name": "Spain",
+    "region": "Europe"
+  },
+  "SE": {
+    "name": "Sweden",
+    "region": "Europe"
+  },
+  "CH": {
+    "name": "Switzerland",
+    "region": "Europe"
+  },
+  "TR": {
+    "name": "Turkey",
+    "region": "Europe"
+  },
+  "UA": {
+    "name": "Ukraine",
+    "region": "Europe"
+  },
+  "GB": {
+    "name": "United Kingdom",
+    "region": "Europe"
+  }
+}
