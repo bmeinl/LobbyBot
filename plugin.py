@@ -199,8 +199,8 @@ class Lobby(callbacks.Plugin):
     def steam(self, irc, msg, args, nickname):
         """[<nickname>]
  
-        Returns steam profile for the given nickname, or the calling user if
-        no nickname was given, along with the current Steam display name.
+        Returns Steam information for the given nickname, or the calling user if
+        no nickname was given.
         """
         if nickname is None:
             nickname = msg.nick
@@ -210,7 +210,7 @@ class Lobby(callbacks.Plugin):
         if results is None:
             irc.reply(nickname + " not registered.", private=self.pm)
             return
-        steam_id = results[0]
+        (steam_id,) = results
         try:
             url = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={}&steamids={}'.format(
                     self.steamkey, steam_id)
@@ -221,7 +221,18 @@ class Lobby(callbacks.Plugin):
         data = json.loads(jsons)
         steam_name = data['response']['players'][0]['personaname'].encode('utf-8')
         steam_url = data['response']['players'][0]['profileurl']
-        irc.reply('Name: {} - URL: {}'.format(steam_name, steam_url), prefixNick=False, private=self.pm)
+        lastlogoff = data['response']['players'][0]['lastlogoff']
+        lastseen = datetime.datetime.utcfromtimestamp(int(lastlogoff)).strftime(
+                '%Y-%m-%d %H:%M:%S')
+        state = int(data['response']['players'][0]['personastate'])
+        if state == 0:
+            irc.reply(('Steam name: {} - Last seen on Steam {} UTC - {} - SteamID: {}').format(
+                steam_name, lastseen, steam_url, steam_id),
+                private=self.pm, prefixNick=False)
+        else:
+            irc.reply(('Steam name: {} - Currently online - {} - SteamID: {}').format(
+                steam_name, steam_url, steam_id),
+                private=self.pm, prefixNick=False)
     steam = wrap(steam, [optional('anything')])
 
 
@@ -259,38 +270,14 @@ class Lobby(callbacks.Plugin):
         if nickname is None:
             nickname = msg.nick
         c = self.conn.cursor()
-        c.execute('SELECT steam_id, used, created_at FROM users WHERE nickname=?', (nickname.lower(),))
+        c.execute('SELECT used, created_at FROM users WHERE nickname=?', (nickname.lower(),))
         results = c.fetchone()
         if results is None:
             irc.reply(nickname + " not registered.", private=self.pm)
             return
-        (steam_id, used, created_at) = results
-
-        try:
-            url = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key={}&steamids={}'.format(
-                    self.steamkey, steam_id)
-            jsons = urllib2.urlopen(url).read()
-        except urllib2.HTTPError:
-            irc.reply('Connection problem to Steam, please try again.', private=self.pm)
-            return
-        data = json.loads(jsons)
-        steam_name = data['response']['players'][0]['personaname'].encode('utf-8')
-        steam_url = data['response']['players'][0]['profileurl']
-        lastlogoff = data['response']['players'][0]['lastlogoff']
-        lastseen = datetime.datetime.utcfromtimestamp(int(lastlogoff)).strftime(
-                '%Y-%m-%d %H:%M:%S')
-        state = int(data['response']['players'][0]['personastate'])
-        print(repr(state))
-        if state == 0:
-            irc.reply(('{}: Steam name {} - SteamID {} - Registered at {} UTC -' + 
-                ' Lobby link generated {:.0f} times - Last seen on Steam {} UTC').format(
-                    nickname, steam_name, steam_id, created_at, used, lastseen),
-                private=self.pm, prefixNick=False)
-        else:
-            irc.reply(('{}: Steam name {} - SteamID {} - Registered at {} UTC -' + 
-                ' Lobby link generated {:.0f} times - Currently online').format(
-                    nickname, steam_name, steam_id, created_at, used),
-                private=self.pm, prefixNick=False)
+        (used, created_at) = results
+        irc.reply("{}: Registered at {} UTC - Lobby link generated {:.0f} times.".format(
+            nickname, created_at, used), private=self.pm, prefixNick=False)
     lobbystats = wrap(lobbystats, [optional('anything')])
 
 
@@ -299,4 +286,4 @@ class Lobby(callbacks.Plugin):
 Class = Lobby
 
 
-# vim:set shiftwidth=4 softtabstop=4 expandtab textwidth=79:
+# vim:set shiftwidth=4 softtabstop=4 expandtab textwidth=120:
