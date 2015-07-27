@@ -97,7 +97,7 @@ class Lobby(callbacks.Plugin):
         c.execute('INSERT INTO users (nickname, steam_id) VALUES (?, ?)', (msg.nick.lower(),
                 steam_id))
         self.conn.commit()
-        irc.reply("{} registered with Steam Name {}".format(msg.nick, steam_name),
+        irc.reply("{} registered successfully. Current Steam name: {}".format(msg.nick, steam_name),
                 prefixNick=False, private=self.pm)
     lobbyreg = wrap(lobbyreg, ['url'])
 
@@ -120,7 +120,7 @@ class Lobby(callbacks.Plugin):
         c.execute('SELECT steam_id FROM users WHERE nickname=?', (nickname.lower(),))
         results = c.fetchone()
         if results is None:
-            irc.reply(nickname + " not registered.", private=self.pm)
+            irc.reply(nickname + " not registered. Use the .lobbyreg command to do so.", private=self.pm)
             return
         steam_id = results[0]
 
