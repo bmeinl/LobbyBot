@@ -48,7 +48,7 @@ import json
 import sqlite3
 import datetime
 
-VERSION = '1.0.1'
+VERSION = '1.0.2'
 
 class Lobby(callbacks.Plugin):
     """Basic Lobby plugin, expect more soon."""
@@ -158,7 +158,7 @@ class Lobby(callbacks.Plugin):
             irc.reply('Connection problem to Steam, please try again.', private=self.pm)
             return
         if self.tm:
-            pingtest = re.search(r'((http://)?(www.)pingtest.net/result/.*\.png)', html)
+            pingtest = re.search(r'((http://)?(www.)pingtest.net/result/.*?\.png)', html)
             if not pingtest:
                 irc.reply('{} does not have their pingtest set! Please read our tournament rules.'.format(print_name),
                         prefixNick=False, private=self.pm)
@@ -176,7 +176,7 @@ class Lobby(callbacks.Plugin):
             irc.reply('Connection problem to TinyURL, please try again.', private=self.pm)
             return
         if self.tm:
-            irc.reply("{}(Pingtest: {}) lobby: {}{}".format(print_name, pingtest.group(1), link, message), prefixNick=False, private=self.pm)
+            irc.reply("{}, Pingtest: {}) lobby: {}{}".format(print_name, pingtest.group(1), link, message), prefixNick=False, private=self.pm)
         else:
             irc.reply("{} lobby: {}{}".format(print_name, link, message), prefixNick=False, private=self.pm)
 
