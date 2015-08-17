@@ -48,7 +48,7 @@ import json
 import sqlite3
 import datetime
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 class Lobby(callbacks.Plugin):
     """Basic Lobby plugin, expect more soon."""
