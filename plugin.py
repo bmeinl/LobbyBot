@@ -64,7 +64,8 @@ class Lobby(callbacks.Plugin):
                      (nickname text, steam_id text, used real default 0, created_at text default
                      CURRENT_TIMESTAMP)''')
         self.conn.commit()
-        self.pm = False
+        self.pm = False # send messages to PM
+        self.tm = False # tournament mode (ie. pingtest lookup)
 
 
     def lobbyreg(self, irc, msg, args, url):
@@ -155,6 +156,12 @@ class Lobby(callbacks.Plugin):
         except urllib2.HTTPError:
             irc.reply('Connection problem to Steam, please try again.', private=self.pm)
             return
+        if self.tm:
+            pingtest = re.search(r'((http://)?(www.)pingtest.net/result/.*\.png)', html)
+            if not pingtest:
+                irc.reply('{} does not have their pingtest set! Please read our tournament rules.'.format(print_name),
+                        prefixNick=false, private=self.pm)
+                return
         match = re.search(r'<a href="([^"]+?)"' + 
                 r' class="btn_green_white_innerfade btn_small_thin">', html)
         if not match:
@@ -167,7 +174,10 @@ class Lobby(callbacks.Plugin):
         except urllib2.HTTPError:
             irc.reply('Connection problem to TinyURL, please try again.', private=self.pm)
             return
-        irc.reply("{} lobby: {}{}".format(print_name, link, message), prefixNick=False, private=self.pm)
+        if self.tm:
+            irc.reply("{}(Pingtest: {}) lobby: {}{}".format(print_name, pingtest.group(1), link, message), prefixNick=False, private=self.pm)
+        else:
+            irc.reply("{} lobby: {}{}".format(print_name, link, message), prefixNick=False, private=self.pm)
 
         c.execute('UPDATE users SET used = used + 1 WHERE nickname=?',
                 (nickname.lower(),))
@@ -240,8 +250,8 @@ class Lobby(callbacks.Plugin):
         """[<ON|OFF>]
 
         Toggles tournament mode ON or OFF. Without argument returns the current
-        mode. In tournament mode, all the tournament plugin replies will be
-        sent to PM to reduce spam. Only usable by channel operators.
+        mode. In tournament mode, invocations of .lobby will check existance of a pingtest.
+        Only usable by channel operators.
         """
         if onoff is None:
             if self.pm: state = "ON"
@@ -250,10 +260,10 @@ class Lobby(callbacks.Plugin):
             return
         if ircdb.checkCapability(msg.prefix, 'op'):
             if onoff.upper() == "ON":
-                self.pm = True
+                self.tm = True
                 irc.reply('Turned Tournament Mode on.')
             else:
-                self.pm = False
+                self.tm = False
                 irc.reply('Turned Tournament Mode off.')
         else:
             irc.reply('Insufficient capabilities. ' +
