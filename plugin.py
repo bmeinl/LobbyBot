@@ -255,7 +255,7 @@ class Lobby(callbacks.Plugin):
         Only usable by channel operators.
         """
         if onoff is None:
-            if self.pm: state = "ON"
+            if self.tm: state = "ON"
             else: state = "OFF"
             irc.reply('Tournament Mode is {}'.format(state))
             return
