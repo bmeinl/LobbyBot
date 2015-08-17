@@ -48,7 +48,7 @@ import json
 import sqlite3
 import datetime
 
-VERSION = '1.0.2'
+VERSION = '1.0.3'
 
 class Lobby(callbacks.Plugin):
     """Basic Lobby plugin, expect more soon."""
@@ -175,8 +175,6 @@ class Lobby(callbacks.Plugin):
         except urllib2.HTTPError:
             irc.reply('Connection problem to TinyURL, please try again.', private=self.pm)
             return
-        if self.tm:
-            irc.reply("{}, Pingtest: {}) lobby: {}{}".format(print_name, pingtest.group(1), link, message), prefixNick=False, private=self.pm)
         else:
             irc.reply("{} lobby: {}{}".format(print_name, link, message), prefixNick=False, private=self.pm)
 
@@ -300,6 +298,39 @@ class Lobby(callbacks.Plugin):
         """
         irc.reply(VERSION, private=self.pm)
     lobbyversion = wrap(lobbyversion, [])
+
+
+    def pingtest(self, irc, msg, args, nickname):
+        """[<nickname>]
+ 
+        Returns pingtest of the given nickname, or information on how to obtain
+        the correct pingtest if no nickname was given.
+        """
+        if nickname is None:
+            irc.reply("http://www.pingtest.net - Ping to Ashburn, VA for East Coast and San Francisco, CA for West"
+            "Coast. You don't need to test packet loss, but results must be linked in your steam profile for the"
+            " tournament", private=self.pm, prefixNick=False)
+            return
+        c = self.conn.cursor()
+        c.execute('SELECT steam_id FROM users WHERE nickname=?', (nickname.lower(),))
+        results = c.fetchone()
+        if results is None:
+            irc.reply(nickname + " not registered.", private=self.pm)
+            return
+        (steam_id,) = results
+        try:
+            html = urllib2.urlopen('http://steamcommunity.com/profiles/' +
+                    steam_id).read()
+        except urllib2.HTTPError:
+            irc.reply('Connection problem to Steam, please try again.', private=self.pm)
+            return
+        pingtest = re.search(r'((http://)?(www.)pingtest.net/result/.*?\.png)', html)
+        if not pingtest:
+            irc.reply('{} does not have their pingtest set! Please read our tournament rules.'.format(print_name),
+                    prefixNick=False, private=self.pm)
+            return
+        irc.reply("{} pingtest results: {}".format(nickname, pingtest.group(1)), private=self.pm, prefixNick=False)
+    pingtest = wrap(pingtest, [optional('anything')])
 
 
 Class = Lobby
