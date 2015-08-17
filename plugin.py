@@ -48,6 +48,7 @@ import json
 import sqlite3
 import datetime
 
+VERSION = '1.0.0'
 
 class Lobby(callbacks.Plugin):
     """Basic Lobby plugin, expect more soon."""
@@ -291,6 +292,14 @@ class Lobby(callbacks.Plugin):
     lobbystats = wrap(lobbystats, [optional('anything')])
 
 
+    def lobbyversion(self, irc, msg, args):
+        """
+
+        Returns current version of this plugin. Arbitrary versioning number,
+        not supposed to make any sense.
+        """
+        irc.reply(VERSION, private=self.pm)
+    lobbyversion = wrap(lobbyversion, [])
 
 
 Class = Lobby
