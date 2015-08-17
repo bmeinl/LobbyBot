@@ -147,7 +147,7 @@ class Lobby(callbacks.Plugin):
 
         print_name = nickname + ' (Region: ' + region
         if steam_name != nickname:
-            print_name += ', Steam: ' + steam_name 
+            print_name += ', Steam: ' + steam_name
         print_name += ')'
 
         try:
@@ -160,7 +160,7 @@ class Lobby(callbacks.Plugin):
             pingtest = re.search(r'((http://)?(www.)pingtest.net/result/.*\.png)', html)
             if not pingtest:
                 irc.reply('{} does not have their pingtest set! Please read our tournament rules.'.format(print_name),
-                        prefixNick=false, private=self.pm)
+                        prefixNick=False, private=self.pm)
                 return
         match = re.search(r'<a href="([^"]+?)"' + 
                 r' class="btn_green_white_innerfade btn_small_thin">', html)
