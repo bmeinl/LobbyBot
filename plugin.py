@@ -48,7 +48,7 @@ import json
 import sqlite3
 import datetime
 
-VERSION = '1.0.3'
+VERSION = '1.0.4'
 
 class Lobby(callbacks.Plugin):
     """Basic Lobby plugin, expect more soon."""
@@ -326,7 +326,7 @@ class Lobby(callbacks.Plugin):
             return
         pingtest = re.search(r'((http://)?(www.)pingtest.net/result/.*?\.png)', html)
         if not pingtest:
-            irc.reply('{} does not have their pingtest set! Please read our tournament rules.'.format(print_name),
+            irc.reply('{} does not have their pingtest set! Use .pingtest for details.'.format(print_name),
                     prefixNick=False, private=self.pm)
             return
         irc.reply("{} pingtest results: {}".format(nickname, pingtest.group(1)), private=self.pm, prefixNick=False)
