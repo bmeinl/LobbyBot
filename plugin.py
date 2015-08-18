@@ -48,7 +48,7 @@ import json
 import sqlite3
 import datetime
 
-VERSION = '1.0.5'
+VERSION = '1.0.5b-fkpyrc'
 
 class Lobby(callbacks.Plugin):
     """Basic Lobby plugin, expect more soon."""
@@ -71,7 +71,7 @@ class Lobby(callbacks.Plugin):
 
     def lobbyreg(self, irc, msg, args, url):
         """<Steam Profile URL>
-        
+
            Registers with the tournament service. Example: .lobbyreg
            http://steamcommunity.com/id/break_it/"""
         c = self.conn.cursor()
@@ -95,7 +95,7 @@ class Lobby(callbacks.Plugin):
 
         steam_id = e.findtext('steamID64')
         steam_name = e.findtext('steamID').encode('utf-8')
-            
+
         c.execute('INSERT INTO users (nickname, steam_id) VALUES (?, ?)', (msg.nick.lower(),
                 steam_id))
         self.conn.commit()
@@ -147,6 +147,7 @@ class Lobby(callbacks.Plugin):
             region = "N/A"
 
         print_name = nickname + ' (Region: ' + region
+        print_name = print_name.encode('utf-8')
         if steam_name != nickname:
             print_name += ', Steam: ' + steam_name
         print_name += ')'
